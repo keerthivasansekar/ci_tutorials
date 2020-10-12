@@ -32,13 +32,13 @@ class Authentication extends MY_Controller
 	    			redirect('news','refresh');
     			} else {
 	    			$this->session->set_flashdata(array('login_error' => "Error processing your login, Please try again"));
-	    			redirect('authenticate','refresh');
+	    			redirect('authentication','refresh');
     			}
     		}
     		else
     		{
     			$this->session->set_flashdata(array('login_error' => "Username or password is incorrect"));
-    			redirect('authenticate','refresh');
+    			redirect('authentication','refresh');
     		}
     	} else {
 	    	$this->load->view('authentication/login');
