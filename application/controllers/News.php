@@ -19,7 +19,7 @@ class News extends MY_Controller {
 	public function add()
 	{
 		$this->check_login_status();
-		$this->form_validation->set_rules('title', 'Title', 'required|min_length[5]|max_length[35]');
+		$this->form_validation->set_rules('title', 'Title', 'required|min_length[5]|max_length[255]');
 		$this->form_validation->set_rules('content', 'Content', 'trim|required');
 		if ($this->form_validation->run() == TRUE) {
 

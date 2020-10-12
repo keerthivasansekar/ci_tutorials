@@ -7,6 +7,12 @@
 </head>
 <body>
 	<div>
+		<a href="<?php echo base_url() ?>">Home</a>&nbsp;&nbsp;
+		<a href="<?php echo base_url('site/about') ?>">About</a>&nbsp;&nbsp;
+		<a href="<?php echo base_url('site/services') ?>">Services</a>&nbsp;&nbsp;
+		<a href="<?php echo base_url('news') ?>">News</a>&nbsp;&nbsp;
+	</div>
+	<div>
 		<p>
 			<?php
 				if ($this->session->flashdata('login_error') !== NULL) {
