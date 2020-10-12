@@ -12,6 +12,7 @@ class Authentication extends MY_Controller
 
     public function index()
     {
+    	$this->check_loginpage();
     	$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
     	$this->form_validation->set_rules('passwrd', 'Password', 'required|min_length[5]|max_length[12]');
 
@@ -19,11 +20,20 @@ class Authentication extends MY_Controller
     		$email = $this->input->post('email', TRUE);
     		$pword = $this->input->post('passwrd', TRUE);
 
-    		$user = $this->mdl_users->get_where_custom('email')->row_array();
+    		$user = $this->Mdl_users->get_where_custom('email', $email)->row_array();
 
     		if(password_verify($pword, $user['pword']))
     		{
-
+    			$user = array(   				
+   					'name' => $user['name'],
+   					'email' => $user['email']
+    			);
+    			if ($this->set_session_data($user, TRUE)) {
+	    			redirect('news','refresh');
+    			} else {
+	    			$this->session->set_flashdata(array('login_error' => "Error processing your login, Please try again"));
+	    			redirect('authenticate','refresh');
+    			}
     		}
     		else
     		{
@@ -55,6 +65,22 @@ class Authentication extends MY_Controller
     	} else {
     		$this->load->view('authentication/addUser');
     	}
+    }
+
+    public function logout()
+    {
+    	session_destroy();
+    	redirect('authentication','refresh');
+    }
+
+    private function set_session_data($user, $is_loggedin = false)
+    {
+    	$logindata = array(
+    		'user' => $user,
+    		'is_loggedin' => $is_loggedin
+    	);
+    	$this->session->set_userdata($logindata);
+    	return TRUE;
     }
 
 

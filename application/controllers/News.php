@@ -11,12 +11,14 @@ class News extends MY_Controller {
 
 	public function index()
 	{
+		$this->check_login_status();
 		$data['all_news'] = $this->Mdl_news->get()->result_array();
 		$this->load->view('news/view_all', $data);
 	}
 
 	public function add()
 	{
+		$this->check_login_status();
 		$this->form_validation->set_rules('title', 'Title', 'required|min_length[5]|max_length[35]');
 		$this->form_validation->set_rules('content', 'Content', 'trim|required');
 		if ($this->form_validation->run() == TRUE) {
@@ -37,6 +39,7 @@ class News extends MY_Controller {
 
 	public function edit($id = null)
 	{
+		$this->check_login_status();
 		$this->form_validation->set_rules('title', 'Title', 'required|min_length[5]|max_length[35]');
 		$this->form_validation->set_rules('content', 'Content', 'trim|required');
 		if ($this->form_validation->run() == TRUE) {
@@ -64,12 +67,14 @@ class News extends MY_Controller {
 
 	public function view($slug = null)
 	{
+		$this->check_login_status();
 		$data['news'] = $this->Mdl_news->get_where_custom('slug', $slug)->row_array();
 		$this->load->view('news/view', $data);
 	}
 
 	public function delete($id = null)
 	{
+		$this->check_login_status();
 		$this->Mdl_news->delete($id);
 		redirect('news','refresh');
 	}
