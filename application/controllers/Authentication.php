@@ -61,7 +61,7 @@ class Authentication extends MY_Controller
 
     		$this->Mdl_users->insert($user);
     		
-    		redirect('authenticate/adduser','refresh');
+    		redirect('authentication/adduser','refresh');
     	} else {
     		$this->load->view('authentication/addUser');
     	}
