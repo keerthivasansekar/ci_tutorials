@@ -1,9 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Reset Password</title>
 </head>
 <body>
 	<div>
@@ -13,6 +12,7 @@
 		<a href="<?php echo base_url('news') ?>">News</a>&nbsp;&nbsp;
 	</div>
 	<div>
+		<h3>Reset Password</h3><br>
 		<p>
 			<?php
 				if ($this->session->flashdata('login_error') !== NULL) {
@@ -20,18 +20,12 @@
 				}
 			?>			
 		</p>
-		<form action="<?php echo base_url('authentication') ?>" method="post">
+		<form action="<?php echo base_url('authentication/forgotpassword') ?>" method="post">
 			<label>Email: </label>
 			<input type="text" name="email" placeholder="Enter your Email" value="<?php echo set_value('email') ?>"><br>
 			<small><?php echo form_error('email') ?></small>
-			<label>Password: </label>
-			<input type="password" name="passwrd" placeholder="Enter your password"><br>
-			<small><?php echo form_error('passwrd') ?></small>
-			<button type="submit">Login</button>			
+			<button type="submit">Reset Password</button>			
 		</form>
-	</div>
-	<div>
-		<p>Trouble logging in?? <a href="<?php echo base_url('authentication/forgotpassword') ?>">Click Here</a> to reset your password</p>
 	</div>
 </body>
 </html>
