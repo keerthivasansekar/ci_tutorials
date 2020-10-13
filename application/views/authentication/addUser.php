@@ -6,6 +6,15 @@
 	<title>Add User</title>
 </head>
 <body>
+	<div>
+		<a href="<?php echo base_url() ?>">Home</a>&nbsp;&nbsp;
+		<a href="<?php echo base_url('site/about') ?>">About</a>&nbsp;&nbsp;
+		<a href="<?php echo base_url('site/services') ?>">Services</a>&nbsp;&nbsp;
+		<a href="<?php echo base_url('news') ?>">News</a>&nbsp;&nbsp;
+	</div>
+	<div style="text-align: right;">
+		<a href="<?php echo base_url('authentication/logout') ?>">Logout</a>&nbsp;&nbsp;
+	</div>
 	<h3>Add User</h3>
 	<div>
 		<form action="<?php echo base_url('authentication/adduser') ?>" method="post">
