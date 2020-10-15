@@ -15,8 +15,8 @@
 		<h3>Reset Password</h3><br>
 		<p>
 			<?php
-				if ($this->session->flashdata('login_error') !== NULL) {
-					echo $this->session->flashdata('login_error');
+				if ($this->session->flashdata('reset_error') !== NULL) {
+					echo $this->session->flashdata('reset_error');
 				}
 			?>			
 		</p>
