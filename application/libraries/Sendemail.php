@@ -4,38 +4,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Sendemail
 {
 	
-	public function notification($to, $message, $subject, $mail){
-		$Emailfrom = "no-reply@kfinsolutions.com";
+	public function notification($to, $message, $subject, $mail_template){
+		$Emailfrom = "training@kfinsolutions.com";
 		$Emailto = $to;
 		$Subject = $subject;
-		$mail = $mail;
  
 		// send email
-		$status = $this->_send($Emailfrom,$Emailto,$Subject,$message,$mail);
+		$status = $this->_send($Emailfrom,$Emailto,$Subject,$message,$mail_template);
 
 		// redirect to success page
 		if ($status){
-			$resp = ['status' => true, 'error' =>''];
-			return $resp;
+			return TRUE;
 		}else{
-			$resp = ['status' => false, 'error' => 'Send failed'];
-			return $resp;
+			return FALSE;
 		}
 	}
 
-	private function _send($from, $to, $subject, $message, $mail) {
+	private function _send($from, $to, $subject, $message, $mail_template) {
 		$CI =& get_instance();
 		$data['message'] = $message;
-		$body = $CI->load->view($mail, $data, TRUE);
+		$body = $CI->load->view($mail_template, $data, TRUE);
         $CI->load->config('email');
         $CI->email->set_newline("\r\n");
-        $CI->email->from($from,"Fu-Gen Capital");
+        $CI->email->from($from,"KFIN Training");
         $CI->email->to($to);
-        $CI->email->reply_to('support@fu-gencapital.com', 'Fu-Gen Support');
+        $CI->email->reply_to('support@kfinsolutions.com', 'KFIN Support');
         $CI->email->subject($subject);
         $CI->email->message($body);
-        $CI->email->send();
-        echo $CI->email->print_debugger();
+        if ($CI->email->send()) {
+        	return true;
+        }
+        else
+        {
+        	return false;
+        }
 
 	}
 }

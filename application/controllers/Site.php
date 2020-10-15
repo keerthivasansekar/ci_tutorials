@@ -17,4 +17,10 @@ class Site extends CI_Controller {
 	{
 		$this->load->view('services');
 	}
+
+	public function email()
+	{
+		$data['message']['reset_link'] = base_url();
+		$this->load->view('emails/forgot_password', $data);
+	}
 }

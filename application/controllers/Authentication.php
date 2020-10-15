@@ -91,8 +91,20 @@ class Authentication extends MY_Controller
                 ];
                 $this->Mdl_users->update($userData['id'], $data);
 
-                $this->session->set_flashdata(array('login_error' => "Password reset email sent successfully - $reset_token"));
-                redirect('authentication','refresh');
+                $this->load->library('sendemail');
+                $message['reset_link'] = base_url('authentication/resetpassword/').$reset_token;
+                if ($this->sendemail->notification($userData['email'], $message, "KFIN Training - Reset Password", "emails/forgot_password")) {
+                    $this->session->set_flashdata(array('login_error' => "Password reset email sent successfully"));
+                    redirect('authentication','refresh');
+                } else {
+                    $this->session->set_flashdata(array('login_error' => "Password reset email sending unsuccessful"));
+                    redirect('authentication','refresh');
+                }                
+            }
+            else
+            {
+                $this->session->set_flashdata(array('reset_error' => "Email address you entered doesn't exists"));
+                redirect('authentication/forgotpassword','refresh');
             }
         } else {
             $this->load->view('authentication/forgot_password');
