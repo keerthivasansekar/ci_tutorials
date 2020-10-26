@@ -11,9 +11,10 @@ class News extends MY_Controller {
 
 	public function index()
 	{
-		$this->check_login_status();
 		$data['all_news'] = $this->Mdl_news->get()->result_array();
-		$this->load->view('news/view_all', $data);
+		$data['_viewfile'] = "news/view_all";
+		$data['header']['title'] = "Latest News";
+		$this->load->view('layouts/main', $data);
 	}
 
 	public function add()

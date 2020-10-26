@@ -55,16 +55,16 @@
             <a class="nav-link" href="<?php echo base_url() ?>">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('site/about') ?>">About</a>
+            <a class="nav-link" href="<?php echo base_url('about') ?>">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('site/services') ?>">Services</a>
+            <a class="nav-link" href="<?php echo base_url('services') ?>">Services</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('news') ?>">News</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('site/contact') ?>">Contact</a>
+            <a class="nav-link" href="<?php echo base_url('contact') ?>">Contact</a>
           </li>
         </ul>
         <p>For Support Call<span class="fa fa-headphones pl-1"></span><br><a href="tel:900-369-8527">900-369-8527</a></p>
