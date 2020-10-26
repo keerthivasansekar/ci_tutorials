@@ -1,9 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CI Tutorials - News</title>
+	<title>CI Tutorials - Users</title>
 	<style type="text/css">
 		table {
 		  border-collapse: collapse;
@@ -20,28 +19,28 @@
 		<a href="<?php echo base_url('site/about') ?>">About</a>&nbsp;&nbsp;
 		<a href="<?php echo base_url('site/services') ?>">Services</a>&nbsp;&nbsp;
 		<a href="<?php echo base_url('news') ?>">News</a>&nbsp;&nbsp;
+		<a href="<?php echo base_url('authentication/viewusers') ?>">Users</a>&nbsp;&nbsp;
 	</div>
 	<div style="text-align: right;">
 		<a href="<?php echo base_url('authentication/logout') ?>">Logout</a>&nbsp;&nbsp;
 	</div>
-	<h2>All News</h2>
-	<a href="<?php echo base_url('news/add/') ?>">Add News</a>
+	<h2>All Users</h2>
+	<a href="<?php echo base_url('authentication/adduser/') ?>">Add New Users</a>
 	<table>
 		<tr>
 			<th>id</th>
-			<th>Title</th>
-			<th>Created on</th>
+			<th>Name</th>
+			<th>Email</th>
 			<th>Actions</th>
 		</tr>
-		<?php foreach($all_news as $news): ?>
+		<?php foreach($all_users as $user): ?>
 		<tr>
-			<td><?php echo $news['id'] ?></td>
-			<td><?php echo $news['title'] ?></td>
-			<td><?php echo $news['created_on'] ?></td>
+			<td><?php echo $user['id'] ?></td>
+			<td><?php echo $user['name'] ?></td>
+			<td><?php echo $user['email'] ?></td>
 			<td>
-				<a href="<?php echo base_url('news/view/').$news['slug'] ?>">View</a>
-				<a href="<?php echo base_url('news/edit/').$news['id'] ?>">Edit</a>
-				<a href="<?php echo base_url('news/delete/').$news['id'] ?>">Delete</a>
+				<a href="<?php echo base_url('authentication/edit/').$user['id'] ?>">Edit</a>
+				<a href="<?php echo base_url('authentication/delete/').$user['id'] ?>">Delete</a>
 			</td>
 		</tr>
 		<?php endforeach; ?>

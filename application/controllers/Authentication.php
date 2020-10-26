@@ -45,8 +45,27 @@ class Authentication extends MY_Controller
     	}
     }
 
+    public function viewusers()
+    {
+        $this->check_login_status();
+        $data['all_users'] = $this->Mdl_users->get()->result_array();
+        $this->load->view('authentication/viewUsers', $data);
+
+    }
+
+    public function edit($id)
+    {
+
+    }
+
+    public function delete($id)
+    {
+
+    }
+
     public function adduser()
     {
+        $this->check_login_status();
     	$this->form_validation->set_rules('name', 'Name', 'required|min_length[5]|max_length[50]');
     	$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
     	$this->form_validation->set_rules('passwrd', 'Password', 'required|min_length[5]|max_length[12]');
